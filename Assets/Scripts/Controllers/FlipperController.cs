@@ -5,11 +5,18 @@ public class FlipperController : ObjectController {
 
 	public Rigidbody flipper;
 	public float flipperForce;
+	public tk2dSpriteAnimator spriteAnimator;
+
+	private bool upAnimPlayed;
+	private bool downAnimPlayed;
 
 	// Use this for initialization
 	override public void Start () {
 
 		base.Start();
+
+		downAnimPlayed = true;
+		upAnimPlayed = false;
 	}
 	
 	// Update is called once per frame
@@ -17,27 +24,36 @@ public class FlipperController : ObjectController {
 		
 		base.FixedUpdate();
 
-		if( objectIsRed )
+		if( ( ObjectIsRed() && Input.GetKey(KeyCode.LeftShift) ) || 
+			( ObjectIsBlue() && Input.GetKey(KeyCode.RightShift) ) )
 		{
-			if( Input.GetKey(KeyCode.LeftShift) )
+			flipper.AddForce(Vector3.up * flipperForce);
+
+			if( !upAnimPlayed )
 			{
-				flipper.AddForce(Vector3.up * flipperForce);
+				if( ObjectIsRed() )
+					spriteAnimator.Play( "RedFlipperUp" );
+				else
+					spriteAnimator.Play( "BlueFlipperUp" );
+				
+				upAnimPlayed = true;
 			}
-			else
-			{
-				flipper.AddForce(Vector3.up * -flipperForce);
-			}
+			downAnimPlayed = false;
 		}
 		else
 		{
-			if( Input.GetKey(KeyCode.RightShift) )
+			flipper.AddForce(Vector3.up * -flipperForce);
+
+			if( !downAnimPlayed )
 			{
-				flipper.AddForce(Vector3.up * flipperForce);
+				if( ObjectIsRed() )
+					spriteAnimator.Play( "RedFlipperDown" );
+				else
+					spriteAnimator.Play( "BlueFlipperDown" );
+				
+				downAnimPlayed = true;
 			}
-			else
-			{
-				flipper.AddForce(Vector3.up * -flipperForce);
-			}
+			upAnimPlayed = false;
 		}
 	}
 }
