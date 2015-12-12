@@ -6,15 +6,10 @@ public class BallController : MonoBehaviour {
 	public tk2dSpriteAnimator spriteAnimator;
 	private bool isRed = true;
 
-	public PlayerCamera playerCamera;
 	public GameController gameController;
 
 	// Use this for initialization
 	void Start () {
-	
-		playerCamera = GameObject.FindGameObjectWithTag( "PlayerCamera" ).GetComponent<PlayerCamera>();
-		playerCamera.SetTarget( this.transform );
-
 		gameController = GameObject.FindGameObjectWithTag( "GameController" ).GetComponent<GameController>();
 	}
 	

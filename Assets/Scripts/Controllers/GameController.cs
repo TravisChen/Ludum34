@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Com.LuisPedroFonseca.ProCamera2D;
 
 public class GameController : MonoBehaviour {
 
@@ -22,5 +23,7 @@ public class GameController : MonoBehaviour {
 	public void Collect()
 	{
 		score += COLLECT_POINTS;
+
+		ProCamera2DShake.Instance.ShakeUsingPreset("Collect");
 	}
 }
