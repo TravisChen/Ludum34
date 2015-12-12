@@ -4,7 +4,10 @@ using System.Collections.Generic;
 
 public class UIManager : MonoBehaviour {
 
+	public GameObject uiCamera;
 	public tk2dTextMesh scoreText;
+	public tk2dTextMesh endScoreText;
+	public tk2dTextMesh resetText;
 	public Color transparentColor;
 
 	// Static singleton property
@@ -12,11 +15,22 @@ public class UIManager : MonoBehaviour {
 
 	void Start()
 	{
+		resetText.gameObject.SetActive( false );
 	}
 
 	void Update()
 	{
 
+	}
+
+	public void ShowUI()
+	{
+		uiCamera.SetActive( true );
+	}
+
+	public void HideUI()
+	{
+		uiCamera.SetActive( false );
 	}
 
 	void Awake()

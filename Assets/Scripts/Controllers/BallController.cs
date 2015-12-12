@@ -5,11 +5,24 @@ public class BallController : MonoBehaviour {
 
 	public tk2dSpriteAnimator spriteAnimator;
 
-	public GameController gameController;
+	private GameController gameController;
+
+	private Rigidbody body;
 
 	// Use this for initialization
 	void Start () {
+
+		body = GetComponent<Rigidbody>();
+		body.isKinematic = true;
+		body.detectCollisions = false;
+
 		gameController = GameObject.FindGameObjectWithTag( "GameController" ).GetComponent<GameController>();
+	}
+
+	public void BallActive()
+	{
+		body.isKinematic = false;
+		body.detectCollisions = true;
 	}
 	
 	// Update is called once per frame
