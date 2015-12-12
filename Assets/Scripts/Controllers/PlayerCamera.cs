@@ -16,11 +16,20 @@ public class PlayerCamera : MonoBehaviour {
 		cam = GetComponent<tk2dCamera>();
 	}
 
+	public void SetTarget( Transform newTarget )
+	{
+		target = newTarget;
+	}
+
 	void FixedUpdate() {
-		Vector3 start = transform.position;
-		Vector3 end = Vector3.MoveTowards(start, target.position, followSpeed * Time.deltaTime);
-		end.z = start.z;
-		transform.position = end;
+
+		if( target )
+		{
+			Vector3 start = transform.position;
+			Vector3 end = Vector3.MoveTowards(start, target.position, followSpeed * Time.deltaTime);
+			end.z = start.z;
+			transform.position = end;
+		}
 
 //		Rigidbody rigidbody = target.GetComponent<Rigidbody>();
 //		if (rigidbody != null && cam != null) {
