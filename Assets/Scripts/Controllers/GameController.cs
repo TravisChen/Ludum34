@@ -112,6 +112,11 @@ public class GameController : MonoBehaviour {
 
 	}
 
+	public void WallHit()
+	{
+		ProCamera2DShake.Instance.ShakeUsingPreset("WallHit");
+	}
+
 	public void Collect()
 	{
 		score += COLLECT_POINTS;

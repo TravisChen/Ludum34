@@ -8,6 +8,10 @@ public class UIManager : MonoBehaviour {
 	public tk2dTextMesh scoreText;
 	public tk2dTextMesh endScoreText;
 	public tk2dTextMesh resetText;
+
+	public GameObject redCollectParticle;
+	public GameObject blueCollectParticle;
+
 	public Color transparentColor;
 
 	// Static singleton property

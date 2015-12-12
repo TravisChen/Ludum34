@@ -45,9 +45,26 @@ public class BallController : MonoBehaviour {
 		{
 			if( collect.CanCollect() )
 			{
+				if( collect.ObjectIsRed() )
+				{
+					GameObject.Instantiate( UIManager.Instance.redCollectParticle, new Vector3( other.transform.position.x, other.transform.position.y, 0.0f ), other.transform.rotation );
+				}
+				else
+				{
+					GameObject.Instantiate( UIManager.Instance.blueCollectParticle, new Vector3( other.transform.position.x, other.transform.position.y, 0.0f ), other.transform.rotation );
+				}
+
 				Destroy( other.gameObject );
 				gameController.Collect();
 			}
+		}
+	}
+
+	void OnCollisionEnter(Collision collision) {
+
+		if( collision.gameObject.layer ==  LayerMask.NameToLayer("Walls") )
+		{
+			gameController.WallHit();
 		}
 	}
 }
