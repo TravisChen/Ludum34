@@ -1,21 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FlipperController : MonoBehaviour {
+public class FlipperController : ObjectController {
 
 	public Rigidbody flipper;
 	public float flipperForce;
-	public bool left;
 
 	// Use this for initialization
-	void Start () {
-	
+	override public void Start () {
+
+		base.Start();
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate () {
+	override public void FixedUpdate () {
+		
+		base.FixedUpdate();
 
-		if( left )
+		if( objectIsRed )
 		{
 			if( Input.GetKey(KeyCode.LeftShift) )
 			{

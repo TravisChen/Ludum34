@@ -4,7 +4,6 @@ using System.Collections;
 public class BallController : MonoBehaviour {
 
 	public tk2dSpriteAnimator spriteAnimator;
-	private bool isRed = true;
 
 	public GameController gameController;
 
@@ -15,18 +14,8 @@ public class BallController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
-		if( Input.GetKeyDown(KeyCode.LeftShift) )
-		{
-			isRed = true;
-		}
 
-		if( Input.GetKeyDown(KeyCode.RightShift) )
-		{
-			isRed = false;
-		}
-
-		if( isRed )
+		if( gameController.IsRed() )
 		{
 			spriteAnimator.Play( "RedBallIdle" );
 		}
@@ -37,7 +26,15 @@ public class BallController : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-		Destroy( other.gameObject );
-		gameController.Collect();
+
+		CollectController collect = other.gameObject.GetComponent<CollectController>();
+		if( collect )
+		{
+			if( collect.CanCollect() )
+			{
+				Destroy( other.gameObject );
+				gameController.Collect();
+			}
+		}
 	}
 }

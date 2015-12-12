@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class UIManager : MonoBehaviour {
 
 	public tk2dTextMesh scoreText;
+	public Color transparentColor;
 
 	// Static singleton property
 	public static UIManager Instance { get; private set; }
