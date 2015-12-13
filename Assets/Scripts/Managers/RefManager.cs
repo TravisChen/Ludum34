@@ -21,6 +21,7 @@ public class RefManager : MonoBehaviour {
 	public AudioSource collectSFX;
 	public AudioSource wallHitSFX;
 	public AudioSource boostSFX;
+	public AudioSource enemyHitSFX;
 
 	public Color transparentColor;
 

@@ -17,6 +17,7 @@ public class GameController : MonoBehaviour {
 	private int score = 0;
 
 	private const int COLLECT_POINTS = 100;
+	private const int ENEMY_HIT_POINTS = 1000;
 	private const float GAME_OVER_TIME = 5.0f;
 
 	// Use this for initialization
@@ -112,6 +113,13 @@ public class GameController : MonoBehaviour {
 			isRed = false;
 		}
 
+	}
+
+	public void EnemyHit()
+	{
+		score += ENEMY_HIT_POINTS;
+
+		ProCamera2DShake.Instance.ShakeUsingPreset("EnemyHit");
 	}
 
 	public void WallHit()

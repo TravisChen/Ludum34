@@ -106,5 +106,12 @@ public class BallController : MonoBehaviour {
 			RefManager.Instance.wallHitSFX.Play();
 			gameController.WallHit();
 		}
+
+		EnemyController enemy = collision.gameObject.GetComponent<EnemyController>();
+		if( enemy )
+		{
+			gameController.EnemyHit();
+			enemy.EnemyHit();
+		}
 	}
 }
