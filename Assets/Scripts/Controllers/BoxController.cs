@@ -3,16 +3,21 @@ using System.Collections;
 
 public class BoxController : ObjectController {
 
-	private tk2dSprite sprite; 
+	public tk2dSpriteAnimator animator; 
 	private BoxCollider boxCollider;
+
+	private bool upAnimPlayed;
+	private bool downAnimPlayed;
 
 	// Use this for initialization
 	override public void Start () {
 	
 		base.Start();
 
-		sprite = GetComponent<tk2dSprite>();
 		boxCollider = GetComponent<BoxCollider>();
+
+		downAnimPlayed = true;
+		upAnimPlayed = false;
 	}
 	
 	// Update is called once per frame
@@ -22,17 +27,41 @@ public class BoxController : ObjectController {
 
 		if( gameController.IsRed() && ObjectIsBlue() )
 		{
-			sprite.color = UIManager.Instance.transparentColor;
+			if( !downAnimPlayed )
+			{
+				animator.Play( "BlueWallDown" );
+				downAnimPlayed = true;
+			}
+			upAnimPlayed = false;
+
 			boxCollider.enabled = false;
 		}
 		else if( gameController.IsBlue() && ObjectIsRed() )
 		{
-			sprite.color = UIManager.Instance.transparentColor;
+			if( !downAnimPlayed )
+			{
+				animator.Play( "RedWallDown" );
+				downAnimPlayed = true;
+			}
+			upAnimPlayed = false;
+
 			boxCollider.enabled = false;
 		}
 		else
 		{
-			sprite.color = Color.white;
+			if( !upAnimPlayed )
+			{
+				if( ObjectIsRed() )
+				{
+					animator.Play( "RedWallUp" );
+				}
+				else
+				{
+					animator.Play( "BlueWallUp" );
+				}
+				upAnimPlayed = true;
+			}
+			downAnimPlayed = false;
 			boxCollider.enabled = true;
 		}
 	}
