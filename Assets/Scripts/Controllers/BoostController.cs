@@ -4,6 +4,7 @@ using System.Collections;
 public class BoostController : ObjectController {
 
 	private tk2dSprite sprite; 
+	private tk2dSpriteAnimator animator;
 	private BoxCollider boxCollider;
 
 	private const float BOOST_FORCE = 2000.0f;
@@ -14,6 +15,7 @@ public class BoostController : ObjectController {
 		base.Start();
 
 		sprite = GetComponent<tk2dSprite>();
+		animator = GetComponent<tk2dSpriteAnimator>();
 		boxCollider = GetComponent<BoxCollider>();
 	}
 	
@@ -24,16 +26,24 @@ public class BoostController : ObjectController {
 
 		if( gameController.IsRed() && ObjectIsBlue() )
 		{
-			sprite.color = UIManager.Instance.transparentColor;
+			animator.Play( "BlueBoostOff" );
 			boxCollider.enabled = false;
 		}
 		else if( gameController.IsBlue() && ObjectIsRed() )
 		{
-			sprite.color = UIManager.Instance.transparentColor;
+			animator.Play( "RedBoostOff" );
 			boxCollider.enabled = false;
 		}
 		else
 		{
+			if( ObjectIsRed() )
+			{
+				animator.Play( "RedBoost" );
+			}
+			else
+			{
+				animator.Play( "BlueBoost" );
+			}
 			sprite.color = Color.white;
 			boxCollider.enabled = true;
 		}
