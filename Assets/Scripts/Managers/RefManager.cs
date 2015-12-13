@@ -15,6 +15,8 @@ public class RefManager : MonoBehaviour {
 	public Material redTrailMat;
 	public Material blueTrailMat;
 
+	public AudioSource song;
+
 	public Color transparentColor;
 
 	// Static singleton property

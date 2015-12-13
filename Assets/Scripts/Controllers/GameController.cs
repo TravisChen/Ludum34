@@ -47,6 +47,7 @@ public class GameController : MonoBehaviour {
 				proCamera.AddCameraTarget( ball.transform, 1, 1 );
 				ball.BallActive();
 				RefManager.Instance.ShowUI();
+				RefManager.Instance.song.Play();
 				gameStarted = true;
 			}
 		}
@@ -63,6 +64,7 @@ public class GameController : MonoBehaviour {
 				proCamera.RemoveAllCameraTargets();
 				proCamera.AddCameraTarget( gameOverTarget, 1, 1 );
 				RefManager.Instance.HideUI();
+				RefManager.Instance.song.Stop();
 				gameOver = true;
 			}
 		}
