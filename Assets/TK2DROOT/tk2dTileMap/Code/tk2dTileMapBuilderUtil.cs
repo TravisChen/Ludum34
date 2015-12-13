@@ -156,6 +156,22 @@ namespace tk2dRuntime.TileMap
 							tk2dUtil.SetTransformParent(instance.transform, parent);
 							instance.transform.localPosition = pos;
 
+							int rawTile = chunkData[y * tileMap.partitionSizeX + x];
+							Quaternion q = prefabGameObject.transform.localRotation;
+							bool rot90 = BuilderUtil.IsRawTileFlagSet(rawTile, tk2dTileFlags.Rot90);
+							bool flipX = BuilderUtil.IsRawTileFlagSet(rawTile, tk2dTileFlags.FlipX);
+							bool flipY = BuilderUtil.IsRawTileFlagSet(rawTile, tk2dTileFlags.FlipY);
+							int rotate = rot90 ? -90 : 0;
+
+							if( rot90 )
+							{
+								rotate += flipX ? -180 : 0;
+							}
+
+							rotate += flipY ? -180 : 0;
+
+							instance.transform.localRotation = q * Quaternion.Euler(0, 0, rotate);
+
 							// Add to tilePrefabs list
 							TilePrefabsX.Add(baseX + x);
 							TilePrefabsY.Add(baseY + y);

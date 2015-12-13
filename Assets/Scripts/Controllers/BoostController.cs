@@ -47,7 +47,7 @@ public class BoostController : ObjectController {
 			if( ball )
 			{
 				Rigidbody rigid = ball.GetComponent<Rigidbody>();
-				rigid.AddForce(Vector3.up * BOOST_FORCE);
+				rigid.AddForce(this.transform.up * BOOST_FORCE);
 			}
 		}
 	}
