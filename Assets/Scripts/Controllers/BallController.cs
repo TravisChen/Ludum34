@@ -61,6 +61,40 @@ public class BallController : MonoBehaviour {
 				gameController.Collect();
 			}
 		}
+
+		PortalEntranceController portalEntrance = other.gameObject.GetComponent<PortalEntranceController>();
+		if( portalEntrance )
+		{
+			GameObject closestExit = FindClosestPortalExit( portalEntrance.ObjectIsRed() );
+			if( closestExit )
+			{
+				transform.position = closestExit.transform.position;
+			}
+		}
+	}
+
+	GameObject FindClosestPortalExit( bool isRed ) {
+		
+		GameObject[] portalExits;
+		portalExits = GameObject.FindGameObjectsWithTag("PortalExit");
+		GameObject closestPortalExit = null;
+
+		float distance = Mathf.Infinity;
+		Vector3 position = transform.position;
+		foreach (GameObject portalExit in portalExits) {
+
+			PortalExitController portalExitController = portalExit.GetComponent<PortalExitController>();
+			if( ( portalExitController.ObjectIsRed() && isRed ) || ( portalExitController.ObjectIsBlue() && !isRed ) )
+			{
+				Vector3 diff = portalExit.transform.position - position;
+				float curDistance = diff.sqrMagnitude;
+				if (curDistance < distance) {
+					closestPortalExit = portalExit;
+					distance = curDistance;
+				}
+			}
+		}
+		return closestPortalExit;
 	}
 
 	void OnCollisionEnter(Collision collision) {
