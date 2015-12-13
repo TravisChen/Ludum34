@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class UIManager : MonoBehaviour {
+public class RefManager : MonoBehaviour {
 
 	public GameObject uiCamera;
 	public tk2dTextMesh scoreText;
@@ -12,10 +12,13 @@ public class UIManager : MonoBehaviour {
 	public GameObject redCollectParticle;
 	public GameObject blueCollectParticle;
 
+	public Material redTrailMat;
+	public Material blueTrailMat;
+
 	public Color transparentColor;
 
 	// Static singleton property
-	public static UIManager Instance { get; private set; }
+	public static RefManager Instance { get; private set; }
 
 	void Start()
 	{

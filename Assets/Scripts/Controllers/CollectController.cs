@@ -20,11 +20,11 @@ public class CollectController : ObjectController {
 
 		if( gameController.IsRed() && ObjectIsBlue() )
 		{
-			sprite.color = UIManager.Instance.transparentColor;
+			sprite.color = RefManager.Instance.transparentColor;
 		}
 		else if( gameController.IsBlue() && ObjectIsRed() )
 		{
-			sprite.color = UIManager.Instance.transparentColor;
+			sprite.color = RefManager.Instance.transparentColor;
 		}
 		else
 		{

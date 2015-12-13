@@ -4,6 +4,7 @@ using System.Collections;
 public class BallController : MonoBehaviour {
 
 	public tk2dSpriteAnimator spriteAnimator;
+	public TrailRenderer trail;
 
 	private GameController gameController;
 
@@ -30,10 +31,12 @@ public class BallController : MonoBehaviour {
 
 		if( gameController.IsRed() )
 		{
+			trail.material = RefManager.Instance.redTrailMat;
 			spriteAnimator.Play( "RedBallIdle" );
 		}
 		else
 		{
+			trail.material = RefManager.Instance.blueTrailMat;
 			spriteAnimator.Play( "BlueBallIdle" );
 		}
 	}
@@ -47,11 +50,11 @@ public class BallController : MonoBehaviour {
 			{
 				if( collect.ObjectIsRed() )
 				{
-					GameObject.Instantiate( UIManager.Instance.redCollectParticle, new Vector3( other.transform.position.x, other.transform.position.y, 0.0f ), other.transform.rotation );
+					GameObject.Instantiate( RefManager.Instance.redCollectParticle, new Vector3( other.transform.position.x, other.transform.position.y, 0.0f ), other.transform.rotation );
 				}
 				else
 				{
-					GameObject.Instantiate( UIManager.Instance.blueCollectParticle, new Vector3( other.transform.position.x, other.transform.position.y, 0.0f ), other.transform.rotation );
+					GameObject.Instantiate( RefManager.Instance.blueCollectParticle, new Vector3( other.transform.position.x, other.transform.position.y, 0.0f ), other.transform.rotation );
 				}
 
 				Destroy( other.gameObject );

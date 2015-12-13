@@ -22,7 +22,7 @@ public class GameController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 	
-		UIManager.Instance.HideUI();
+		RefManager.Instance.HideUI();
 		gameOverTimer = GAME_OVER_TIME;
 
 	}
@@ -46,7 +46,7 @@ public class GameController : MonoBehaviour {
 				proCamera.RemoveAllCameraTargets();
 				proCamera.AddCameraTarget( ball.transform, 1, 1 );
 				ball.BallActive();
-				UIManager.Instance.ShowUI();
+				RefManager.Instance.ShowUI();
 				gameStarted = true;
 			}
 		}
@@ -62,7 +62,7 @@ public class GameController : MonoBehaviour {
 			{
 				proCamera.RemoveAllCameraTargets();
 				proCamera.AddCameraTarget( gameOverTarget, 1, 1 );
-				UIManager.Instance.HideUI();
+				RefManager.Instance.HideUI();
 				gameOver = true;
 			}
 		}
@@ -72,7 +72,7 @@ public class GameController : MonoBehaviour {
 			gameOverTimer -= Time.deltaTime;
 			if( gameOverTimer <= 0.0f )
 			{
-				UIManager.Instance.resetText.gameObject.SetActive( true );
+				RefManager.Instance.resetText.gameObject.SetActive( true );
 
 				if( Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift) )
 				{
@@ -97,8 +97,8 @@ public class GameController : MonoBehaviour {
 			return;
 		}
 
-		UIManager.Instance.scoreText.text = score.ToString();
-		UIManager.Instance.endScoreText.text = score.ToString();
+		RefManager.Instance.scoreText.text = score.ToString();
+		RefManager.Instance.endScoreText.text = score.ToString();
 
 		if( Input.GetKeyDown(KeyCode.LeftShift) )
 		{
