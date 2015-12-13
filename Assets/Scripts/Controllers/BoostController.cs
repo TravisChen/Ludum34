@@ -7,6 +7,8 @@ public class BoostController : ObjectController {
 	private tk2dSpriteAnimator animator;
 	private BoxCollider boxCollider;
 
+	private bool boostSFXPlayed = false;
+
 	private const float BOOST_FORCE = 4000.0f;
 
 	// Use this for initialization
@@ -58,7 +60,18 @@ public class BoostController : ObjectController {
 			{
 				Rigidbody rigid = ball.GetComponent<Rigidbody>();
 				rigid.AddForce(this.transform.up * BOOST_FORCE);
+
+				if( !boostSFXPlayed )
+				{
+					RefManager.Instance.boostSFX.Play();
+					boostSFXPlayed = true;
+				}
 			}
 		}
+	}
+
+	void OnTriggerExit(Collider other) {
+		
+		boostSFXPlayed = false;
 	}
 }

@@ -20,6 +20,7 @@ public class RefManager : MonoBehaviour {
 	public AudioSource flipperSFX;
 	public AudioSource collectSFX;
 	public AudioSource wallHitSFX;
+	public AudioSource boostSFX;
 
 	public Color transparentColor;
 
