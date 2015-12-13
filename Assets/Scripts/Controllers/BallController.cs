@@ -57,6 +57,7 @@ public class BallController : MonoBehaviour {
 					GameObject.Instantiate( RefManager.Instance.blueCollectParticle, new Vector3( other.transform.position.x, other.transform.position.y, 0.0f ), other.transform.rotation );
 				}
 
+				RefManager.Instance.collectSFX.Play();
 				Destroy( other.gameObject );
 				gameController.Collect();
 			}
@@ -102,6 +103,7 @@ public class BallController : MonoBehaviour {
 
 		if( collision.gameObject.layer ==  LayerMask.NameToLayer("Walls") )
 		{
+			RefManager.Instance.wallHitSFX.Play();
 			gameController.WallHit();
 		}
 	}

@@ -7,7 +7,7 @@ public class BoostController : ObjectController {
 	private tk2dSpriteAnimator animator;
 	private BoxCollider boxCollider;
 
-	private const float BOOST_FORCE = 2000.0f;
+	private const float BOOST_FORCE = 4000.0f;
 
 	// Use this for initialization
 	override public void Start () {

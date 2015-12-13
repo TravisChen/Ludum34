@@ -18,6 +18,8 @@ public class RefManager : MonoBehaviour {
 	public AudioSource song;
 	public AudioSource portalSFX;
 	public AudioSource flipperSFX;
+	public AudioSource collectSFX;
+	public AudioSource wallHitSFX;
 
 	public Color transparentColor;
 
