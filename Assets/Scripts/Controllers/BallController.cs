@@ -68,6 +68,7 @@ public class BallController : MonoBehaviour {
 			GameObject closestExit = FindClosestPortalExit( portalEntrance.ObjectIsRed() );
 			if( closestExit )
 			{
+				RefManager.Instance.portalSFX.Play();
 				transform.position = closestExit.transform.position;
 			}
 		}

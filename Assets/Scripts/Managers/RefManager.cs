@@ -16,6 +16,8 @@ public class RefManager : MonoBehaviour {
 	public Material blueTrailMat;
 
 	public AudioSource song;
+	public AudioSource portalSFX;
+	public AudioSource flipperSFX;
 
 	public Color transparentColor;
 
