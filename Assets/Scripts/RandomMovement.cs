@@ -4,6 +4,8 @@ using System.Collections;
 public class RandomMovement : MonoBehaviour {
 
 	public float speed = 10.0f;
+	public tk2dSprite sprite;
+
 	private Vector3 currWaypoint;
 	private Vector3 direction;
 
@@ -33,6 +35,15 @@ public class RandomMovement : MonoBehaviour {
 		{
 			ChangeDirection();
 			changeTime = Random.Range( MIN_CHANGE_TIME, MAX_CHANGE_TIME );
+		}
+
+		if( rigidBody.velocity.x <= 0.0f )
+		{
+			sprite.FlipX = true;
+		}
+		else
+		{
+			sprite.FlipX = false;
 		}
 
 	}

@@ -143,7 +143,6 @@ public class GameController : MonoBehaviour {
 		float ballY = ball.transform.position.y;
 
 		float progress = ( ballY - startY ) / (endY - startY );
-		Debug.Log( progress );
 
 		float progressY = ( ( RefManager.Instance.progressMarkerHighY - RefManager.Instance.progressMarkerLowY ) * progress ) + RefManager.Instance.progressMarkerLowY;
 		RefManager.Instance.progressMarker.localPosition = new Vector3( RefManager.Instance.progressMarker.localPosition.x, progressY, RefManager.Instance.progressMarker.localPosition.z);
