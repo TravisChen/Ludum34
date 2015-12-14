@@ -66,7 +66,7 @@ public class BallController : MonoBehaviour {
 		PortalEntranceController portalEntrance = other.gameObject.GetComponent<PortalEntranceController>();
 		if( portalEntrance )
 		{
-			GameObject closestExit = FindClosestPortalExit( portalEntrance.ObjectIsRed() );
+			GameObject closestExit = FindClosestPortalExit( portalEntrance );
 			if( closestExit )
 			{
 				RefManager.Instance.portalSFX.Play();
@@ -75,7 +75,7 @@ public class BallController : MonoBehaviour {
 		}
 	}
 
-	GameObject FindClosestPortalExit( bool isRed ) {
+	GameObject FindClosestPortalExit( PortalEntranceController portalEntranceController ) {
 		
 		GameObject[] portalExits;
 		portalExits = GameObject.FindGameObjectsWithTag("PortalExit");
@@ -86,13 +86,17 @@ public class BallController : MonoBehaviour {
 		foreach (GameObject portalExit in portalExits) {
 
 			PortalExitController portalExitController = portalExit.GetComponent<PortalExitController>();
-			if( ( portalExitController.ObjectIsRed() && isRed ) || ( portalExitController.ObjectIsBlue() && !isRed ) )
+			if( ( portalExitController.ObjectIsRed() && portalEntranceController.ObjectIsRed() ) || 
+				( portalExitController.ObjectIsBlue() && portalEntranceController.ObjectIsBlue() ) )
 			{
-				Vector3 diff = portalExit.transform.position - position;
-				float curDistance = diff.sqrMagnitude;
-				if (curDistance < distance) {
-					closestPortalExit = portalExit;
-					distance = curDistance;
+				if( portalExitController.transform.position.y > portalEntranceController.transform.position.y )
+				{
+					Vector3 diff = portalExit.transform.position - position;
+					float curDistance = diff.sqrMagnitude;
+					if (curDistance < distance) {
+						closestPortalExit = portalExit;
+						distance = curDistance;
+					}
 				}
 			}
 		}
