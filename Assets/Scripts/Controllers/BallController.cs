@@ -109,6 +109,18 @@ public class BallController : MonoBehaviour {
 		return closestPortalExit;
 	}
 
+	public void ballPulse( bool right ) 
+	{
+		if( right )
+		{
+			body.AddForce(Vector3.right * 50.0f);
+		}
+		else
+		{
+			body.AddForce(Vector3.left * 50.0f);
+		}
+	}
+
 	void OnCollisionEnter(Collision collision) {
 
 		if( collision.gameObject.layer ==  LayerMask.NameToLayer("Walls") )

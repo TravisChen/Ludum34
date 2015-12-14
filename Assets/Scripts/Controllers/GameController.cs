@@ -108,6 +108,7 @@ public class GameController : MonoBehaviour {
 				RefManager.Instance.redOrbLord.StopAndResetFrame();
 				RefManager.Instance.redOrbLord.Play( "RedOrbLord" );
 				OrbLordSmash();
+				ball.ballPulse( false );
 				redOrbLordPlayed = true;
 			}
 		}
@@ -125,6 +126,7 @@ public class GameController : MonoBehaviour {
 				RefManager.Instance.blueOrbLord.StopAndResetFrame();
 				RefManager.Instance.blueOrbLord.Play( "BlueOrbLord" );
 				OrbLordSmash();
+				ball.ballPulse( true );
 				blueOrbLordPlayed = true;
 			}
 		}
