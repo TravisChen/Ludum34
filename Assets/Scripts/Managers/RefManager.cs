@@ -28,6 +28,11 @@ public class RefManager : MonoBehaviour {
 	public AudioSource startSFX;
 	public AudioSource finishSFX;
 
+	public Transform progressMarker;
+	public Transform progressMeter;
+	public float progressMarkerLowY;
+	public float progressMarkerHighY;
+
 	public tk2dSpriteAnimator redOrbLord;
 	public tk2dSpriteAnimator blueOrbLord;
 
@@ -50,12 +55,16 @@ public class RefManager : MonoBehaviour {
 	{
 		scoreText.gameObject.SetActive( true );
 		timeText.gameObject.SetActive( true );
+		progressMeter.gameObject.SetActive( true );
+		progressMarker.gameObject.SetActive( true );
 	}
 
 	public void HideUI()
 	{
 		scoreText.gameObject.SetActive( false );
 		timeText.gameObject.SetActive( false );
+		progressMeter.gameObject.SetActive( false );
+		progressMarker.gameObject.SetActive( false );
 	}
 
 	void Awake()

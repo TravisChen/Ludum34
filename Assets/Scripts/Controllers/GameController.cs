@@ -25,12 +25,17 @@ public class GameController : MonoBehaviour {
 	private bool redOrbLordPlayed = false;
 	private bool blueOrbLordPlayed = false;
 
+	private Transform startMarker;
+	private Transform endMarker;
+
 	// Use this for initialization
 	void Start () {
 	
 		RefManager.Instance.HideUI();
 		gameOverTimer = GAME_OVER_TIME;
 
+		startMarker = GameObject.FindGameObjectWithTag( "StartMarker" ).transform;
+		endMarker = GameObject.FindGameObjectWithTag( "EndMarker" ).transform;
 	}
 
 	public bool IsRed()
@@ -131,6 +136,19 @@ public class GameController : MonoBehaviour {
 		}
 	}
 
+	private void UpdateProgress()
+	{
+		float startY = startMarker.position.y;
+		float endY = endMarker.position.y;
+		float ballY = ball.transform.position.y;
+
+		float progress = ( ballY - startY ) / (endY - startY );
+		Debug.Log( progress );
+
+		float progressY = ( ( RefManager.Instance.progressMarkerHighY - RefManager.Instance.progressMarkerLowY ) * progress ) + RefManager.Instance.progressMarkerLowY;
+		RefManager.Instance.progressMarker.localPosition = new Vector3( RefManager.Instance.progressMarker.localPosition.x, progressY, RefManager.Instance.progressMarker.localPosition.z);
+	}
+
 	// Update is called once per frame
 	void Update () {
 
@@ -145,6 +163,8 @@ public class GameController : MonoBehaviour {
 		{
 			return;
 		}
+
+		UpdateProgress();
 
 		totalTime += Time.deltaTime;
 		int seconds = (int)( totalTime % 60.0f );
