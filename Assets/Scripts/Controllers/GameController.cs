@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour {
 	public ProCamera2D proCamera;
 	public Transform gameOverTarget;
 
+	private bool playerFinish = false;
 	private bool gameStarted = false;
 	private bool gameOver = false;
 	private bool isRed = true;
@@ -15,6 +16,7 @@ public class GameController : MonoBehaviour {
 	private float gameOverTimer;
 
 	private int score = 0;
+	private float totalTime = 0.0f;
 
 	private const int COLLECT_POINTS = 100;
 	private const int ENEMY_HIT_POINTS = 1000;
@@ -52,6 +54,7 @@ public class GameController : MonoBehaviour {
 				ball.BallActive();
 				RefManager.Instance.ShowUI();
 				RefManager.Instance.song.Play();
+				RefManager.Instance.startSFX.Play();
 				gameStarted = true;
 			}
 		}
@@ -61,7 +64,7 @@ public class GameController : MonoBehaviour {
 
 	private bool UpdateGameOver()
 	{
-		if( Input.GetKeyDown(KeyCode.Q) )
+		if( playerFinish )
 		{
 			if( !gameOver )
 			{
@@ -69,6 +72,7 @@ public class GameController : MonoBehaviour {
 				proCamera.AddCameraTarget( gameOverTarget, 1, 1 );
 				RefManager.Instance.HideUI();
 				RefManager.Instance.song.Stop();
+				RefManager.Instance.finishSFX.Play();
 				gameOver = true;
 			}
 		}
@@ -90,22 +94,8 @@ public class GameController : MonoBehaviour {
 		return gameOver;
 	}
 
-	// Update is called once per frame
-	void Update () {
-
-		if( !UpdateGameStart() )
-		{
-			return;
-		}
-
-		if( UpdateGameOver() )
-		{
-			return;
-		}
-
-		RefManager.Instance.scoreText.text = score.ToString();
-		RefManager.Instance.endScoreText.text = score.ToString();
-
+	private void UpdateOrbLords()
+	{
 		if( Input.GetKeyDown(KeyCode.LeftShift) )
 		{
 			isRed = true;
@@ -114,6 +104,7 @@ public class GameController : MonoBehaviour {
 			{
 				RefManager.Instance.redOrbLord.StopAndResetFrame();
 				RefManager.Instance.redOrbLord.Play( "RedOrbLord" );
+				OrbLordSmash();
 				redOrbLordPlayed = true;
 			}
 		}
@@ -130,6 +121,7 @@ public class GameController : MonoBehaviour {
 			{
 				RefManager.Instance.blueOrbLord.StopAndResetFrame();
 				RefManager.Instance.blueOrbLord.Play( "BlueOrbLord" );
+				OrbLordSmash();
 				blueOrbLordPlayed = true;
 			}
 		}
@@ -137,7 +129,61 @@ public class GameController : MonoBehaviour {
 		{
 			blueOrbLordPlayed = false;
 		}
+	}
 
+	// Update is called once per frame
+	void Update () {
+
+		UpdateOrbLords();
+
+		if( !UpdateGameStart() )
+		{
+			return;
+		}
+
+		if( UpdateGameOver() )
+		{
+			return;
+		}
+
+		totalTime += Time.deltaTime;
+		int seconds = (int)( totalTime % 60.0f );
+		int minutes = (int)( totalTime / 60 );
+
+		string timeString;
+		if( seconds < 10 )
+		{
+			timeString = minutes + ":" + "0" + seconds.ToString();
+		}
+		else
+		{
+			timeString = minutes + ":" + seconds.ToString();
+		}
+
+		RefManager.Instance.timeText.text = timeString;
+		RefManager.Instance.endTimeText.text = timeString;
+
+		RefManager.Instance.scoreText.text = score.ToString();
+		RefManager.Instance.endScoreText.text = score.ToString();
+
+	}
+
+	public void PlayerFinish()
+	{
+		if( !playerFinish )
+		{
+			playerFinish = true;
+		}
+	}
+
+	public bool IsGameOver()
+	{
+		return gameOver;
+	}
+
+	public void OrbLordSmash()
+	{
+		ProCamera2DShake.Instance.ShakeUsingPreset("OrbLordSmash");
 	}
 
 	public void EnemyHit()
@@ -155,7 +201,5 @@ public class GameController : MonoBehaviour {
 	public void Collect()
 	{
 		score += COLLECT_POINTS;
-
-		ProCamera2DShake.Instance.ShakeUsingPreset("Collect");
 	}
 }

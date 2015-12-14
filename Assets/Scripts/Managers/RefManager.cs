@@ -6,7 +6,9 @@ public class RefManager : MonoBehaviour {
 
 	public GameObject uiCamera;
 	public tk2dTextMesh scoreText;
+	public tk2dTextMesh timeText;
 	public tk2dTextMesh endScoreText;
+	public tk2dTextMesh endTimeText;
 	public tk2dTextMesh resetText;
 
 	public GameObject redCollectParticle;
@@ -23,6 +25,8 @@ public class RefManager : MonoBehaviour {
 	public AudioSource wallHitSFX;
 	public AudioSource boostSFX;
 	public AudioSource enemyHitSFX;
+	public AudioSource startSFX;
+	public AudioSource finishSFX;
 
 	public tk2dSpriteAnimator redOrbLord;
 	public tk2dSpriteAnimator blueOrbLord;
@@ -44,12 +48,14 @@ public class RefManager : MonoBehaviour {
 
 	public void ShowUI()
 	{
-		uiCamera.SetActive( true );
+		scoreText.gameObject.SetActive( true );
+		timeText.gameObject.SetActive( true );
 	}
 
 	public void HideUI()
 	{
-		uiCamera.SetActive( false );
+		scoreText.gameObject.SetActive( false );
+		timeText.gameObject.SetActive( false );
 	}
 
 	void Awake()

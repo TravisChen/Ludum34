@@ -29,6 +29,12 @@ public class BallController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		if( gameController.IsGameOver() )
+		{
+			body.isKinematic = true;
+			body.detectCollisions = false;
+		}
+
 		if( gameController.IsRed() )
 		{
 			trail.material = RefManager.Instance.redTrailMat;
