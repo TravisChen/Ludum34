@@ -24,6 +24,9 @@ public class RefManager : MonoBehaviour {
 	public AudioSource boostSFX;
 	public AudioSource enemyHitSFX;
 
+	public tk2dSpriteAnimator redOrbLord;
+	public tk2dSpriteAnimator blueOrbLord;
+
 	public Color transparentColor;
 
 	// Static singleton property

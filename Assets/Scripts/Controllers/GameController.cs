@@ -20,6 +20,9 @@ public class GameController : MonoBehaviour {
 	private const int ENEMY_HIT_POINTS = 1000;
 	private const float GAME_OVER_TIME = 5.0f;
 
+	private bool redOrbLordPlayed = false;
+	private bool blueOrbLordPlayed = false;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -106,11 +109,33 @@ public class GameController : MonoBehaviour {
 		if( Input.GetKeyDown(KeyCode.LeftShift) )
 		{
 			isRed = true;
+
+			if( !redOrbLordPlayed )
+			{
+				RefManager.Instance.redOrbLord.StopAndResetFrame();
+				RefManager.Instance.redOrbLord.Play( "RedOrbLord" );
+				redOrbLordPlayed = true;
+			}
+		}
+		else
+		{
+			redOrbLordPlayed = false;
 		}
 
 		if( Input.GetKeyDown(KeyCode.RightShift) )
 		{
 			isRed = false;
+
+			if( !blueOrbLordPlayed )
+			{
+				RefManager.Instance.blueOrbLord.StopAndResetFrame();
+				RefManager.Instance.blueOrbLord.Play( "BlueOrbLord" );
+				blueOrbLordPlayed = true;
+			}
+		}
+		else
+		{
+			blueOrbLordPlayed = false;
 		}
 
 	}

@@ -32,9 +32,13 @@ public class FlipperController : ObjectController {
 			if( !upAnimPlayed )
 			{
 				if( ObjectIsRed() )
+				{
 					spriteAnimator.Play( "RedFlipperUp" );
+				}
 				else
+				{
 					spriteAnimator.Play( "BlueFlipperUp" );
+				}
 
 				RefManager.Instance.flipperSFX.Play();
 				
