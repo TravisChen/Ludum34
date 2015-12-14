@@ -113,11 +113,11 @@ public class BallController : MonoBehaviour {
 	{
 		if( right )
 		{
-			body.AddForce(Vector3.right * 50.0f);
+			body.AddForce(Vector3.right * 100.0f);
 		}
 		else
 		{
-			body.AddForce(Vector3.left * 50.0f);
+			body.AddForce(Vector3.left * 100.0f);
 		}
 	}
 
