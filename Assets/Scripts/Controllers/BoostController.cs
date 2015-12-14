@@ -9,7 +9,7 @@ public class BoostController : ObjectController {
 
 	private bool boostSFXPlayed = false;
 
-	private const float BOOST_FORCE = 4000.0f;
+	private const float BOOST_FORCE = 1500.0f;
 
 	// Use this for initialization
 	override public void Start () {
