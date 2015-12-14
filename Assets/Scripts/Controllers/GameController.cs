@@ -87,8 +87,6 @@ public class GameController : MonoBehaviour {
 			gameOverTimer -= Time.deltaTime;
 			if( gameOverTimer <= 0.0f )
 			{
-				RefManager.Instance.resetText.gameObject.SetActive( true );
-
 				if( Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift) )
 				{
 					Application.LoadLevel(Application.loadedLevel);

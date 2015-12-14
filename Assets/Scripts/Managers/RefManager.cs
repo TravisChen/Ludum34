@@ -9,7 +9,6 @@ public class RefManager : MonoBehaviour {
 	public tk2dTextMesh timeText;
 	public tk2dTextMesh endScoreText;
 	public tk2dTextMesh endTimeText;
-	public tk2dTextMesh resetText;
 
 	public GameObject redCollectParticle;
 	public GameObject blueCollectParticle;
@@ -44,7 +43,6 @@ public class RefManager : MonoBehaviour {
 
 	void Start()
 	{
-		resetText.gameObject.SetActive( false );
 	}
 
 	void Update()
