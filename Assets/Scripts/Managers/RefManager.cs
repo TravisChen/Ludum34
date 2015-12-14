@@ -32,6 +32,7 @@ public class RefManager : MonoBehaviour {
 	public Transform progressMeter;
 	public float progressMarkerLowY;
 	public float progressMarkerHighY;
+	public Transform scoreBackground;
 
 	public tk2dSpriteAnimator redOrbLord;
 	public tk2dSpriteAnimator blueOrbLord;
@@ -57,6 +58,7 @@ public class RefManager : MonoBehaviour {
 		timeText.gameObject.SetActive( true );
 		progressMeter.gameObject.SetActive( true );
 		progressMarker.gameObject.SetActive( true );
+		scoreBackground.gameObject.SetActive( true );
 	}
 
 	public void HideUI()
@@ -65,6 +67,7 @@ public class RefManager : MonoBehaviour {
 		timeText.gameObject.SetActive( false );
 		progressMeter.gameObject.SetActive( false );
 		progressMarker.gameObject.SetActive( false );
+		scoreBackground.gameObject.SetActive( false );
 	}
 
 	void Awake()
