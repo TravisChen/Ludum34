@@ -11,6 +11,7 @@ public class RefManager : MonoBehaviour {
 
 	public GameObject redCollectParticle;
 	public GameObject blueCollectParticle;
+	public GameObject enemyHitParticle;
 
 	public Material redTrailMat;
 	public Material blueTrailMat;

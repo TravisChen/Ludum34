@@ -3,8 +3,6 @@ using System.Collections;
 
 public class EnemyController : MonoBehaviour {
 
-	public ParticleSystem particle;
-
 	// Use this for initialization
 	void Start () {
 	}
@@ -16,7 +14,6 @@ public class EnemyController : MonoBehaviour {
 
 	public void EnemyHit()
 	{
-		particle.Play();
 		RefManager.Instance.enemyHitSFX.Play();
 	}
 }

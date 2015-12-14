@@ -110,8 +110,12 @@ public class BallController : MonoBehaviour {
 		EnemyController enemy = collision.gameObject.GetComponent<EnemyController>();
 		if( enemy )
 		{
-			gameController.EnemyHit();
+			GameObject.Instantiate( RefManager.Instance.enemyHitParticle, new Vector3( collision.transform.position.x, collision.transform.position.y, 0.0f ), collision.transform.rotation );
+
 			enemy.EnemyHit();
+			gameController.EnemyHit();
+
+			Destroy( enemy.gameObject );
 		}
 	}
 }
