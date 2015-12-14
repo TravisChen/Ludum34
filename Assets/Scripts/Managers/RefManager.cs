@@ -5,10 +5,10 @@ using System.Collections.Generic;
 public class RefManager : MonoBehaviour {
 
 	public GameObject uiCamera;
-	public tk2dTextMesh scoreText;
-	public tk2dTextMesh timeText;
-	public tk2dTextMesh endScoreText;
-	public tk2dTextMesh endTimeText;
+	public TextMesh scoreText;
+	public TextMesh timeText;
+	public TextMesh endScoreText;
+	public TextMesh endTimeText;
 
 	public GameObject redCollectParticle;
 	public GameObject blueCollectParticle;
